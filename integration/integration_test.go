@@ -104,9 +104,11 @@ func TestIntegration(t *testing.T) {
 			`},
 		{name: "CannotBeActivatedTwice",
 			script: `
+				echo starting...
 				hermit init .
-				. bin/activate-hermit
-				. bin/activate-hermit
+				echo done init
+				. bin/activate-hermit; echo done activating
+				. bin/activate-hermit; echo done second activation
 			`,
 			fails:        true,
 			expectations: exp{outputContains("This Hermit environment has already been activated. Skipping")}},
